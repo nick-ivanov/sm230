@@ -13,17 +13,18 @@ public class ChartParameters {
     private Instant startTime = Instant.MIN;
     private int frameStartPeriod = 0;
     private int frameNumberOfPeriods = 0;
-    private double periodWidthPixels = 0;
+    private double periodWidthPixels = 0.0;
     private int numberOfPeriods = 0;
-    private double chartMinPrice = 0;
-    private double chartMaxPrice = 0;
+    private double frameMinPrice = 0.0;
+    private double frameMaxPrice = 0.0;
     private String instrument = "";
     private Color foregroundBullColor = Color.GREEN;
     private Color foregroundBearColor = Color.RED;
-    private Color foregroundEmptyColor = Color.WHITE;
-
-    private Color foregroundShadeColor = Color.GREY;
+    private Color foregroundEmptyColor = Color.BLACK;
+    private Color foregroundShadowColor = Color.GREY;
     private Color backgroundColor = Color.BLACK;
+    private double frameWidthPixels = 0.0;
+    private double frameHeightPixels = 0.0;
 
     ChartParameters(GraphicsContext graphicsContext) {
         this.graphicsContext = graphicsContext;
@@ -77,20 +78,20 @@ public class ChartParameters {
         this.numberOfPeriods = numberOfPeriods;
     }
 
-    public double getChartMinPrice() {
-        return chartMinPrice;
+    public double getFrameMinPrice() {
+        return frameMinPrice;
     }
 
-    public void setChartMinPrice(double chartMinPrice) {
-        this.chartMinPrice = chartMinPrice;
+    public void setFrameMinPrice(double frameMinPrice) {
+        this.frameMinPrice = frameMinPrice;
     }
 
-    public double getChartMaxPrice() {
-        return chartMaxPrice;
+    public double getFrameMaxPrice() {
+        return frameMaxPrice;
     }
 
-    public void setChartMaxPrice(double chartMaxPrice) {
-        this.chartMaxPrice = chartMaxPrice;
+    public void setFrameMaxPrice(double frameMaxPrice) {
+        this.frameMaxPrice = frameMaxPrice;
     }
 
     public void setGraphicsContext(GraphicsContext graphicsContext) {
@@ -141,11 +142,27 @@ public class ChartParameters {
         this.backgroundColor = backgroundColor;
     }
 
-    public Color getForegroundShadeColor() {
-        return foregroundShadeColor;
+    public Color getForegroundShadowColor() {
+        return foregroundShadowColor;
     }
 
-    public void setForegroundShadeColor(Color foregroundShadeColor) {
-        this.foregroundShadeColor = foregroundShadeColor;
+    public void setForegroundShadowColor(Color foregroundShadowColor) {
+        this.foregroundShadowColor = foregroundShadowColor;
+    }
+
+    public double getFrameWidthPixels() {
+        return frameWidthPixels;
+    }
+
+    public void setFrameWidthPixels(double frameWidthPixels) {
+        this.frameWidthPixels = frameWidthPixels;
+    }
+
+    public double getFrameHeightPixels() {
+        return frameHeightPixels;
+    }
+
+    public void setFrameHeightPixels(double frameHeightPixels) {
+        this.frameHeightPixels = frameHeightPixels;
     }
 }
