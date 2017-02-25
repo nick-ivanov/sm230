@@ -5,8 +5,6 @@ package chart;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -16,25 +14,46 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Canvas canvas = new Canvas(width, height);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        ChartParameters chartParameters = new ChartParameters(gc);
+        //Canvas canvas = new Canvas(width, height);
+        //GraphicsContext gc = canvas.getGraphicsContext2D();
+        Chart chart = new Chart(width, height);
 
-        chartParameters.setFrameMinPrice(1.05165);
-        chartParameters.setFrameMaxPrice(1.05715);
-        chartParameters.setFrameWidthPixels(width);
-        chartParameters.setFrameHeightPixels(height);
-        chartParameters.setNumberOfPeriods(8);
+//        chart.setTimestampBarHeight(20.0);
+//        chart.setFrameMinPrice(1.05165);
+//        chart.setFrameMaxPrice(1.05715);
+//        chart.setFrameWidthPixels(width);
+//
+//        chart.setFrameHeightPixels(height - chart.getTimestampBarHeight());
+//        chart.setFrameNumberOfPeriods(8);
+//        chart.setNumberOfPeriods(8);
+//        chart.setPeriodWidthPixels(chart.getFrameWidthPixels() / chart.getFrameNumberOfPeriods());
 
-        Candle candle = new Candle(chartParameters);
-        candle.drawCandle(0, 30.0, 1.05486, 1.05597, 1.05323, 1.05545);
-        candle.drawCandle(1, 30.0, 1.05544, 1.05656, 1.05432, 1.05464);
-        candle.drawCandle(2, 30.0, 1.05462, 1.05486, 1.05340, 1.05462);
+        //System.out.println("wwwtn: " + chart.getPeriodWidthPixels());
 
 
+
+        //Grid grid = new Grid(chart);
+        //grid.drawGrid(2);
+
+//        TimestampBar timestampBar = new TimestampBar(chart);
+//        ArrayList<String> timestamps = new ArrayList<>(Arrays.asList(
+//                "Feb 24",
+//                "Feb 25",
+//                "Feb 26",
+//                "Feb 27",
+//                "Feb 28",
+//                "Mar 1",
+//                "Mar 2",
+//                "Mar 3"));
+//        timestampBar.populateTimestampBar(timestamps, 0, 2);
+
+//        Candle candle = new Candle(chart);
+//        candle.drawCandle(0, 30.0, 1.05486, 1.05597, 1.05323, 1.05545);
+//        candle.drawCandle(1, 30.0, 1.05544, 1.05656, 1.05432, 1.05464);
+//        candle.drawCandle(2, 30.0, 1.05462, 1.05486, 1.05340, 1.05462);
 
         BorderPane root = new BorderPane();
-        root.setCenter(canvas);
+        root.setCenter(chart);
 
         Scene scene = new Scene(root, 640, 480);
 
