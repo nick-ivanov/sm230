@@ -1,7 +1,7 @@
 //    Copyright (C) Nick Ivanov <nick@nnbits.org> <nnrowan@gmail.com>
 //    All rights reserved.
 
-package chart;
+package sm230;
 
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -23,7 +23,6 @@ public class Chart extends Canvas {
     private int numberOfPeriods = 0;
     private double frameMinPrice = 0.0;
     private double frameMaxPrice = 0.0;
-    private String instrument = "";
     private Color foregroundBullColor = Color.GREEN;
     private Color foregroundBearColor = Color.RED;
     private Color foregroundEmptyColor = Color.BLACK;
@@ -34,6 +33,7 @@ public class Chart extends Canvas {
     private Color gridColor = Color.LIGHTPINK;
     private double timestampBarHeight = 0.0;
     private double shadowThickness = 2.0;  // TODO: Should become flexible in the future
+    private Instrument instrument;
 
     Chart(double width, double height) {
         super(width, height);
@@ -88,15 +88,16 @@ public class Chart extends Canvas {
         double x1 = centerX - candleWidth / 2.0;
         double x2 = centerX + candleWidth / 2.0;
 
-        if(close > open) {
+        // Bodies of bull, bear and doji candles are drawn differently
+        if(close > open) {  // Bull (green/white candle)
             graphicsContext.setFill(foregroundBullColor);
             bodyTopY = (frameMaxPrice - close) / priceValueInOnePixel;
             bodyBottomY = (frameMaxPrice - open) / priceValueInOnePixel;
-        } else if(close < open) {
+        } else if(close < open) { // Bear (read/black candle)
             graphicsContext.setFill(foregroundBearColor);
             bodyTopY = (frameMaxPrice - open) / priceValueInOnePixel;
             bodyBottomY = (frameMaxPrice - close) / priceValueInOnePixel;
-        } else {
+        } else { // doji candle (no real body)
             bodyBottomY = bodyTopY = (frameMaxPrice - close) / priceValueInOnePixel;
         }
 
@@ -116,7 +117,6 @@ public class Chart extends Canvas {
 
     private void populateTimestampBar(ArrayList<String> allTimestamps, int firstTimestamp, int timestampStep) {
         for(int i = firstTimestamp; i < numberOfPeriods; i += timestampStep) {
-
             graphicsContext.fillText(allTimestamps.get(i),
                     i * periodWidthPixels,
                     frameHeightPixels + timestampBarHeight);
@@ -206,14 +206,6 @@ public class Chart extends Canvas {
         return this.graphicsContext;
     }
 
-    public String getInstrument() {
-        return instrument;
-    }
-
-    public void setInstrument(String instrument) {
-        this.instrument = instrument;
-    }
-
     public Color getForegroundBullColor() {
         return foregroundBullColor;
     }
@@ -292,5 +284,13 @@ public class Chart extends Canvas {
 
     public void setShadowThickness(double shadowThickness) {
         this.shadowThickness = shadowThickness;
+    }
+
+    public Instrument getInstrument() {
+        return instrument;
+    }
+
+    public void setInstrument(Instrument instrument) {
+        this.instrument = instrument;
     }
 }
