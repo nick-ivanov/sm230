@@ -14,6 +14,8 @@ public class Instrument {
     private String nickname;    // "Euro", "Yen", "Cable", "Aussie", "Loonie", "Kiwi", etc.
     private final ArrayList<OHLC> data = new ArrayList<>();
 
+    private final ArrayList<Tick> tickdata = new ArrayList<>();
+
     public Instrument(String code) {
         this.code = code;
     }
