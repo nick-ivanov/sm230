@@ -3,19 +3,21 @@
 
 package sm230;
 
+import java.time.LocalDateTime;
+
 // Simplified research candle: mid-price only, no bids/asks
 public class SM230Candle {
     private String instrument;
-    private long timestamp;
+    private LocalDateTime time;
     private String granularity;
     private double open;
     private double high;
     private double low;
     private double close;
 
-    public SM230Candle(String instrument, long timestamp, String granularity, double open, double high, double low, double close) {
+    public SM230Candle(String instrument, LocalDateTime time, String granularity, double open, double high, double low, double close) {
         this.instrument = instrument;
-        this.timestamp = timestamp;
+        this.time = time;
         this.granularity = granularity;
         this.open = open;
         this.high = high;
@@ -31,12 +33,12 @@ public class SM230Candle {
         this.instrument = instrument;
     }
 
-    public long getTimestamp() {
-        return timestamp;
+    public LocalDateTime getTime() {
+        return time;
     }
 
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 
     public String getGranularity() {
