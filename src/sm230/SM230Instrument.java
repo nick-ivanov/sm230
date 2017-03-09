@@ -5,7 +5,7 @@ package sm230;
 
 import java.util.ArrayList;
 
-public class Instrument {
+public class SM230Instrument {
     private String code;    // ISO 4217 code
     private String baseCurrency;    // Forex only
     private String quoteCurrency;   // Forex only
@@ -16,7 +16,7 @@ public class Instrument {
 
     private final ArrayList<Tick> tickdata = new ArrayList<>();
 
-    public Instrument(String code) {
+    public SM230Instrument(String code) {
         this.code = code;
     }
 

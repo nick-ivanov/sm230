@@ -33,7 +33,7 @@ public class Chart extends Canvas {
     private Color gridColor = Color.LIGHTPINK;
     private double timestampBarHeight = 0.0;
     private double shadowThickness = 2.0;  // TODO: Should become flexible in the future
-    private Instrument instrument;
+    private SM230Instrument SM230Instrument;
 
     Chart(double width, double height) {
         super(width, height);
@@ -286,11 +286,11 @@ public class Chart extends Canvas {
         this.shadowThickness = shadowThickness;
     }
 
-    public Instrument getInstrument() {
-        return instrument;
+    public SM230Instrument getSM230Instrument() {
+        return SM230Instrument;
     }
 
-    public void setInstrument(Instrument instrument) {
-        this.instrument = instrument;
+    public void setSM230Instrument(SM230Instrument SM230Instrument) {
+        this.SM230Instrument = SM230Instrument;
     }
 }
