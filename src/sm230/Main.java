@@ -26,24 +26,47 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        LoginDialog loginDialog = new LoginDialog();
-        loginDialog.askCredentials();
+//        LoginDialog loginDialog = new LoginDialog();
+//        loginDialog.askCredentials();
 
-        System.out.println("USERNAME: " + loginDialog.getUsername() +
-            ", PASSWORD: " + loginDialog.getPassword());
+//        System.out.println("USERNAME: " + loginDialog.getUsername() +
+//            ", PASSWORD: " + loginDialog.getPassword());
 
-        ProviderInterface oanda = new OandaProviderDriver();
 
-        try {
-            System.out.println("Hi");
-            oanda.initProvider("src/sm230/sm230.properties", loginDialog.getUsername(), loginDialog.getPassword());
-        } catch(Exception ex) {
-            System.out.println("Couldn't initialize Oanda provider driver: " + ex.getMessage());
-            Platform.exit();
-        }
+//        try {
+//            System.out.println("Hi");
+//            oanda.initProvider("src/sm230/sm230.properties", loginDialog.getUsername(), loginDialog.getPassword());
+//        } catch(Exception ex) {
+//            System.out.println("Couldn't initialize Oanda provider driver: " + ex.getMessage());
+//            Platform.exit();
+//        }
+
+//        SM230Instrument instrument = new SM230Instrument("EUR/USD");
+//        instrument.setProvider(oanda);
+//
+//        try {
+//            instrument.updateCandleData();
+//        } catch(Exception ex) {
+//            System.out.println("Unable to update candle data: " + ex.getMessage());
+//            Platform.exit();
+//        }
+//
+//        int n = instrument.getCandleData().get("H1").size();
+//        int m = instrument.getCandleData().keySet().size();
+//
+//        System.out.println("Number of granularities: " + m);
+//
+//        System.out.println("Grans: " + instrument.getCandleData().keySet().toString());
+//
+//        for(int i = 0; i < n; i++) {
+//            System.out.println("Candle #" + i + ": " +
+//                instrument.getCandleData().get("H1").get(i).getOpen() + " " +
+//                instrument.getCandleData().get("H1").get(i).getHigh() + " " +
+//                instrument.getCandleData().get("H1").get(i).getLow() + " " +
+//                instrument.getCandleData().get("H1").get(i).getClose() + " "
+//            );
+//        }
     }
-
-
 
     public static void main(String[] args) {
         launch(args);

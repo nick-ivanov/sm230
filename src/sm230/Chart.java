@@ -3,6 +3,7 @@
 
 package sm230;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,9 +12,9 @@ import javafx.scene.paint.Color;
 
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Chart extends Canvas {
+    private int numberOfCandlesShown = 0;
     private GraphicsContext graphicsContext;
     private long periodSeconds = 0;
     private Instant startTime = Instant.MIN;
@@ -39,33 +40,64 @@ public class Chart extends Canvas {
         super(width, height);
         graphicsContext = this.getGraphicsContext2D();
 
+        ArrayList<String> timestamps = new ArrayList<>();
+
+        final int NUMBER_OF_CANDLES = 10;
+
+        ProviderInterface oanda = new OandaProviderDriver();
+
+        try {
+            System.out.println("here1");
+            oanda.initProvider("src/sm230/sm230.properties", null, null);
+        } catch (Exception ex) {
+            System.out.println("Unable to initialize Oanda provier: " + ex.getMessage());
+        }
+
+        ArrayList<SM230Candle> candles = new ArrayList<>();
+
+        try {
+            candles = oanda.getRecentCandles("EUR/USD", "H1", NUMBER_OF_CANDLES);
+        } catch(Exception ex) {
+            System.out.println("Unable to obtain candles: " + ex.getMessage());
+            Platform.exit();
+        }
+
+        double minPrice = Double.MAX_VALUE;
+        double maxPrice = 0.0;
+
+        for(int i = 0; i < NUMBER_OF_CANDLES; i++) {
+
+            if (candles.get(i).getHigh() > maxPrice) {
+                maxPrice = candles.get(i).getHigh();
+            }
+
+            if (candles.get(i).getLow() < minPrice) {
+                minPrice = candles.get(i).getLow();
+            }
+        }
         setTimestampBarHeight(20.0);
-        setFrameMinPrice(1.05165);
-        setFrameMaxPrice(1.05715);
+        setFrameMinPrice(minPrice);
+        setFrameMaxPrice(maxPrice);
         setFrameWidthPixels(width);
         setFrameHeightPixels(height - getTimestampBarHeight());
-        setFrameNumberOfPeriods(8);
-        setNumberOfPeriods(8);
+        setFrameNumberOfPeriods(NUMBER_OF_CANDLES);
+        setNumberOfPeriods(NUMBER_OF_CANDLES);
         setPeriodWidthPixels(getFrameWidthPixels() / getFrameNumberOfPeriods());
-
         drawGrid(2);
 
-        ArrayList<String> timestamps = new ArrayList<>(Arrays.asList(
-                "Feb 24",
-                "Feb 25",
-                "Feb 26",
-                "Feb 27",
-                "Feb 28",
-                "Mar 1",
-                "Mar 2",
-                "Mar 3")
-        );
+        for(int i = 0; i < NUMBER_OF_CANDLES; i++) {
+            drawCandle(i, 20.0,
+                    candles.get(i).getOpen(),
+                    candles.get(i).getHigh(),
+                    candles.get(i).getLow(),
+                    candles.get(i).getClose()
+            );
+
+            timestamps.add(candles.get(i).getTime().getHour() + ":00");
+        }
 
         populateTimestampBar(timestamps, 0, 2);
 
-        drawCandle(0, 30.0, 1.05486, 1.05597, 1.05323, 1.05545);
-        drawCandle(1, 30.0, 1.05544, 1.05656, 1.05432, 1.05464);
-        drawCandle(2, 30.0, 1.05462, 1.05486, 1.05340, 1.05462);
 
         this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
@@ -292,5 +324,13 @@ public class Chart extends Canvas {
 
     public void setSM230Instrument(SM230Instrument SM230Instrument) {
         this.SM230Instrument = SM230Instrument;
+    }
+
+    public int getNumberOfCandlesShown() {
+        return numberOfCandlesShown;
+    }
+
+    public void setNumberOfCandlesShown(int numberOfCandlesShown) {
+        this.numberOfCandlesShown = numberOfCandlesShown;
     }
 }
