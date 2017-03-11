@@ -1,5 +1,23 @@
-//    Copyright (C) Nick Ivanov <nick@nnbits.org> <nnrowan@gmail.com>
-//    All rights reserved.
+/****************************************************************************
+ *    sm230 -- Non-traditional Forex Research Tool
+ *    Copyright (C) 2017  Nick Ivanov
+ *
+ *    This program is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *    E-mail: nick@nnbits.org
+ *    Website: http://nnbits.org/sm230
+ *****************************************************************************/
 
 package sm230;
 
@@ -47,13 +65,13 @@ public class LoginDialog {
 
         TextField username = new TextField();
         username.setPromptText("Username");
-        PasswordField password = new PasswordField();
-        password.setPromptText("Password");
+        PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("Password");
 
         grid.add(new Label("Username:"), 0, 0);
         grid.add(username, 1, 0);
         grid.add(new Label("Password:"), 0, 1);
-        grid.add(password, 1, 1);
+        grid.add(passwordField, 1, 1);
 
 // Enable/Disable login button depending on whether a username was entered.
         Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
@@ -72,7 +90,7 @@ public class LoginDialog {
 // Convert the result to a username-password-pair when the login button is clicked.
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == loginButtonType) {
-                return new Pair<>(username.getText(), password.getText());
+                return new Pair<>(username.getText(), passwordField.getText());
             }
             return null;
         });

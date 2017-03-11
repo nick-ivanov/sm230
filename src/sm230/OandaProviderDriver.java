@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
-
 public class OandaProviderDriver implements ProviderInterface {
     private String apiKey;
 

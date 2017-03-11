@@ -1,5 +1,23 @@
-//    Copyright (C) Nick Ivanov <nick@nnbits.org> <nnrowan@gmail.com>
-//    All rights reserved.
+/****************************************************************************
+ *    sm230 -- Non-traditional Forex Research Tool
+ *    Copyright (C) 2017  Nick Ivanov
+ *
+ *    This program is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *    E-mail: nick@nnbits.org
+ *    Website: http://nnbits.org/sm230
+ *****************************************************************************/
 
 package sm230;
 
@@ -13,7 +31,6 @@ public class SM230Instrument {
     private String baseCurrencyName;    // Forex only. E.g., "Euro"
     private String quoteCurrencyName;   // Forex only. E.g., "US Dollar"
     private String nickname;    // "Euro", "Yen", "Cable", "Aussie", "Loonie", "Kiwi", etc.
-    private final ArrayList<OHLC> data = new ArrayList<>();
     private ProviderInterface provider;
 
     private final ArrayList<Tick> tickdata = new ArrayList<>();
@@ -83,10 +100,6 @@ public class SM230Instrument {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
-    }
-
-    public ArrayList<OHLC> getData() {
-        return data;
     }
 
     public ProviderInterface getProvider() {
