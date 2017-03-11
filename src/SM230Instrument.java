@@ -19,8 +19,6 @@
  *    Website: http://nnbits.org/sm230
  *****************************************************************************/
 
-package sm230;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

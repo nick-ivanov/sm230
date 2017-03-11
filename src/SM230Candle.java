@@ -19,8 +19,6 @@
  *    Website: http://nnbits.org/sm230
  *****************************************************************************/
 
-package sm230;
-
 import java.time.LocalDateTime;
 
 // Simplified research candle: mid-price only, no bids/asks

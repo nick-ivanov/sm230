@@ -19,8 +19,6 @@
  *    Website: http://nnbits.org/sm230
  *****************************************************************************/
 
-package sm230;
-
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -66,7 +64,7 @@ public class Chart extends Canvas {
 
         try {
             System.out.println("here1");
-            oanda.initProvider("src/sm230/sm230.properties", null, null);
+            oanda.initProvider("sm230.properties", null, null);
         } catch (Exception ex) {
             System.out.println("Unable to initialize Oanda provier: " + ex.getMessage());
         }

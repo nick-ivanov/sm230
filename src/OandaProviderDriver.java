@@ -1,8 +1,6 @@
 //    Copyright (C) Nick Ivanov <nick@nnbits.org> <nnrowan@gmail.com>
 //    All rights reserved.
 
-package sm230;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -99,6 +97,11 @@ public class OandaProviderDriver implements ProviderInterface {
     public ArrayList<String> getGranularitiesAvailable() {
         return new ArrayList<String>(Arrays.asList("S5", "S10", "S15", "S30", "M1", "M2", "M4", "M5", "M10",
                 "M15", "M30", "H1", "H2", "H3", "H4", "H6", "H8", "H12", "D", "W", "M"));
+    }
+
+    @Override
+    public ArrayList<String> getInstrumentsAvailable() {
+        return new ArrayList<String>(Arrays.asList("EUR/USD", "USD/JPY"));
     }
 
     @Override

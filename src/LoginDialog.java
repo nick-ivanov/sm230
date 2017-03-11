@@ -19,8 +19,6 @@
  *    Website: http://nnbits.org/sm230
  *****************************************************************************/
 
-package sm230;
-
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -51,7 +49,7 @@ public class LoginDialog {
         dialog.setHeaderText("Look, a Custom Login Dialog");
 
 // Set the icon (must be included in the project).
-        dialog.setGraphic(new ImageView(this.getClass().getResource("lock.png").toString()));
+        dialog.setGraphic(new ImageView(this.getClass().getResource("../../images/lock.png").toString()));
 
 // Set the button types.
         ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);

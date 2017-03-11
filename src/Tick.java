@@ -1,8 +1,6 @@
 //    Copyright (C) Nick Ivanov <nick@nnbits.org> <nnrowan@gmail.com>
 //    All rights reserved.
 
-package sm230;
-
 public class Tick {
     private long timestamp;
     private double open;
